@@ -65,6 +65,8 @@ function Header() {
 }
 
 function Menu() {
+  const pizza = pizzaData
+  // const pizza = []
   // name: "Pizza Prosciutto",
   // ingredients: "Tomato, mozarella, ham, aragula, and burrata cheese",
   // price: 18,
@@ -78,24 +80,48 @@ function Menu() {
         our stone oven, all organic, all delicious.
       </p>
       <div className="pizzas">
-        {pizzaData.map((pizza) => {
-          return (
-            <Pizza
-              name={pizza.name}
-              ingredients={pizza.ingredients}
-              photoName={pizza.photoName}
-              price={pizza.price}
-              soldOut={pizza.soldOut}
-            />
-          )
-        })}
+        {pizza.length >= 1 ? (
+          pizza.map((pizza) => {
+            return (
+              <Pizza
+                name={pizza.name}
+                ingredients={pizza.ingredients}
+                photoName={pizza.photoName}
+                price={pizza.price}
+                soldOut={pizza.soldOut}
+              />
+            )
+          })
+        ) : (
+          <OutofStock />
+        )}
       </div>
     </div>
   )
 }
-
+function OutofStock() {
+  return (
+    <div className="outOfstock">
+      <h1>We are Preparing our menu !</h1>
+    </div>
+  )
+}
 function Footer() {
+  const openHr = 12
+  const closeHr = 22
   const hr = new Date().getHours()
+  // const isOpen = hr >= openHr && hr <= closeHr
+  const isOpen = false
+  console.log(hr, isOpen)
+  if (!isOpen) {
+    return (
+      <footer className="footer">
+        <div className="order">
+          <p>We're Closed ! Welocome you to visit between 12PM to 22PM</p>
+        </div>
+      </footer>
+    )
+  }
 
   return (
     <footer className="footer">
@@ -105,7 +131,7 @@ function Footer() {
           {hr >= 12 && hr <= 22
             ? "we are Currently open to serve"
             : "we are closed"} */}
-          We're open from 12:00 to 22:00. Come visit us or order online
+          We're open now ✨, from 12:00 to 22:00. Come visit us or order online
         </p>
         <button className="btn">Order</button>
       </div>

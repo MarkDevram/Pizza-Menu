@@ -179,6 +179,10 @@ body {
   background-color: #e9bb24;
 }
 
+.outOfstock {
+  position: absolute;
+  left: 600px;
+}
 /*
 SPACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 40 / 48 / 64 / 80 / 96 / 128
